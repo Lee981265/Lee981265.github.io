@@ -1,0 +1,604 @@
+<script src="/assets/jq.min.js"></script>
+<script src="/assets/clipboard.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/jquery.pjax.min.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- <script type="text/javascript" src="assets/clipboard.min.js"></script>
+<script type="text/javascript" src="js/src/custom.js"></script> -->
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Lee">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="cZKtPkWm2R" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lee.js.org">
+
+    <!-- <script type="text/javascript" src="/snow/jquery.min.js"></script>
+    <script type="text/javascript" src="/snow/all.js"></script> -->
+    <!--SEO-->
+
+<meta name="description" content="Lee hexo lee.js.org"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>如何提升自我素养 | Lee</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Lee" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?64ec872394d355ebe8bfd31c2dae6ff2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+		    i['GoogleAnalyticsObject'] = r;
+		    i[r] = i[r] || function() {
+		        (i[r].q = i[r].q || []).push(arguments)
+		    }, i[r].l = 1 * new Date();
+		    a = s.createElement(o),
+		    m = s.getElementsByTagName(o)[0];
+		    a.async = 1;
+		    a.src = g;
+		    m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'pFW527fHrjfI0si2w4NQ0w3cTw12AvvuohAu1PUfqKA', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+    <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    <!-- <div class="bg"></div>
+    <div class="bg bg--1"></div>
+    <div class="bg bg--2"></div>
+    <div class="bg bg--3"></div>
+    <div class="bg bg--4"></div>
+    <div class="bg bg--5"></div> -->
+
+    <style media="screen">
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgv7d0w8wj31oo11xgrb.jpg); */
+      background-image: url(https://luuman.github.io/background/bg-2.jpg);
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;
+      animation: imageAnimation 36s linear infinite 0s;
+      opacity: 0;
+
+    }
+    .bg--1 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvae03wnj31hc0vhqv6.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-4.jpg);
+        animation-delay: 6s;
+    }
+    .bg--2 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvbuwo0uj31hc0vgu0y.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-8.jpg);
+        animation-delay: 12s;
+    }
+    .bg--3 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvcltrqaj31z4140b2a.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-16.jpg);
+        animation-delay: 18s;
+    }
+    .bg--4 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdbkyxgj31hc0xchdt.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 24s;
+    }
+    .bg--5 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdwo51oj31hc0u0u0z.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 30s;
+    }
+    @-webkit-keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+    @keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+
+    /* body {
+        cursor: url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),auto;
+    } */
+    </style>
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+
+      <div id="aplayer-XgHNeRfs" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="1985290357" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true" data-fixed="true"></div>
+    <!-- 头部 -->
+<header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Lee Aaron'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> Just open your eyes , you got everything in the world </h2>
+            
+    	</div>
+    </div>
+</header>
+
+    <!-- 导航栏 -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://lee.js.org">Lee</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Frontend/"><i class="fa "></i>Frontend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Backend/"><i class="fa "></i>Backend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Essay/"><i class="fa "></i>Essay</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archives</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/aboutme/"><i class="fa "></i>Aboutme</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/music/"><i class="fa "></i>Music</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/"><i class="fa "></i>Magic</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="https://leeaaron6.gitee.io/"><i class="fa "></i>Simple</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="如何提升自我素养">
+            
+	            如何提升自我素养
+            
+        </h1>
+        <div class="post-meta">
+  <span class="fa-wrap">
+
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+  <a href="/aboutme/">
+      Lee
+  </a>
+</span>
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Essay/">Essay</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/For-Myself/">For Myself</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/11</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+            
+            
+    </div>
+    <!-- 画廊 -->
+
+
+    <div class="post-body post-content">
+        <p>很多女孩都说我是一个直男！！！</p>
+<p>那么如何改变自己呢？</p>
+<p>情操 + 情商 = 完美 ？</p>
+<p><div id="music163player"><br>    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=110761&auto=0&height=66"><br>    </iframe><br></div><br><a id="more"></a></p>
+<p>在我们的生活中，我们不但要让我们的物质世界获得满足，作为万物灵长的我们，还应该注重我们</p>
+<p>内心世界的渴求，去获得我们内心世界的满足，去丰富我们的精神世界，让我们的内心世界不再是</p>
+<p>一片荒芜的沙漠，去做一个有才情的人，那么，如何去</p>
+<p>丰富我们的精神世界呢?如何去培养我们的情操呢？</p>
+<h2 id="情操的培养"><a href="#情操的培养" class="headerlink" title="情操的培养"></a>情操的培养</h2><h3 id="热爱读书"><a href="#热爱读书" class="headerlink" title="热爱读书"></a>热爱读书</h3><p>想要培养我们的情操，首先要热爱读书，所谓书中自有黄金屋，书中自有颜如玉，崇高的道德操守</p>
+<p>来源于一代又一代人的积累，只有从书中汲取养分，我们才能不断的成长，才能够真正地培养和提</p>
+<p>高我们的情操。</p>
+<h3 id="不断反思自己"><a href="#不断反思自己" class="headerlink" title="不断反思自己"></a>不断反思自己</h3><p>想要培养自己的情操，就要不断反思自己，只有不断反思自己，才能够不断的提高自己，同时在反</p>
+<p>思自我中，我们也在提高我们的情操，让我们更加的完善，做更好的自己。</p>
+<h3 id="关爱他人"><a href="#关爱他人" class="headerlink" title="关爱他人"></a>关爱他人</h3><p>所以情操，就是道德操守，要想培养情操，就应该从自身出发，推己及人，像关爱自己那样去关爱</p>
+<p>他人，只有这样才能算是一个有情操的人，因此在生活中，我们应该更多地关爱别人。</p>
+<h3 id="宽广的胸襟"><a href="#宽广的胸襟" class="headerlink" title="宽广的胸襟"></a>宽广的胸襟</h3><p>有情操的人，他们有气度，有胸襟，不会因为他们的无意一句话而发怒，也不会因为别人无意的错</p>
+<p>误而生气，他们懂的宽容别人。他们对自己严格要求，但他们对别人要求宽松，只有胸襟宽广的人</p>
+<p>才能成为有情操的人。</p>
+<h3 id="谦虚"><a href="#谦虚" class="headerlink" title="谦虚"></a>谦虚</h3><p>有情操的人，他们不会整天夸夸其谈，不会整天吹嘘自己，也不会整天奉承别人，有情操的人懂的</p>
+<p>谦虚，他们不会自满，他们愿意接受别人的批评，所以他们能都不断提高自身的素养和情操，所以</p>
+<p>想要做有情操的人，一定要学会谦虚。</p>
+<h3 id="生活阅历丰富"><a href="#生活阅历丰富" class="headerlink" title="生活阅历丰富"></a>生活阅历丰富</h3><p>只有经过岁月洗礼的人，他们才能够不断丰富自己，不断提高自己，让自己变得更加优秀，同样也</p>
+<p>只有这样才能培养自己的情操，培养情操是一个长期的过程，只有拥有丰富的生活阅历，慢慢地培</p>
+<p>养，坚持不懈才能够做一个有情操的人。</p>
+<h2 id="高情商的培养"><a href="#高情商的培养" class="headerlink" title="高情商的培养"></a>高情商的培养</h2><h3 id="生气的时候尽量不要说话"><a href="#生气的时候尽量不要说话" class="headerlink" title="生气的时候尽量不要说话"></a>生气的时候尽量不要说话</h3><p>人每当生气的时候，肾上腺素会大量分泌，情绪会不受控制。</p>
+<ul>
+<li><p>和关系不好的陌生人生气时</p>
+<blockquote>
+<p>和陌生人生气时会毫无顾忌的说一下难听的话甚至粗鄙之语，你讲的越多对方可能越生气，最<br>糟糕的是发生肢体冲突</p>
+</blockquote>
+</li>
+<li><p>和亲人或者爱人生气时</p>
+<blockquote>
+<p>有时候你或者是在气头上说话没有分寸，一旦说出令人伤心的话得不偿失，毕竟是我们所亲所<br>爱，没有过不去的坎。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="说话的语气一定要和气"><a href="#说话的语气一定要和气" class="headerlink" title="说话的语气一定要和气"></a>说话的语气一定要和气</h3><p>有时候一句话不同的人说出来的效果却完全不一样呢，为什么会这样呢？正所谓伸手不打笑脸人，</p>
+<p>你有求于人或者冒犯别人时，笑着说话不仅可以掩饰自己的尴尬，还可以让对方不对你产生抵触，</p>
+<p>但是，记住不要做舔狗。</p>
+<h3 id="说话要有底气"><a href="#说话要有底气" class="headerlink" title="说话要有底气"></a>说话要有底气</h3><p>吾之所爱，吾当勇敢去爱，不要表现的过于懦弱；但是不要满嘴跑火车，这样会适得其反。</p>
+<h3 id="说话要守诚信"><a href="#说话要守诚信" class="headerlink" title="说话要守诚信"></a>说话要守诚信</h3><p>古人云：‘言必信，行必果。’，说过话就要办到，切勿失信于人。</p>
+<h3 id="得饶人处且饶人"><a href="#得饶人处且饶人" class="headerlink" title="得饶人处且饶人"></a>得饶人处且饶人</h3><p>古人云：“人非圣贤，孰能无过，知错能改，善莫大焉。”，做人要大度，懂得宽容别人，这样别人</p>
+<p>就会更加尊敬你，你的威望也会上升。</p>
+<h3 id="要多读书"><a href="#要多读书" class="headerlink" title="要多读书"></a>要多读书</h3><p>古人语：“多万卷书，行万里路。”，我们可以从书中学到很多知识不断充实自己，以史为鉴，换位</p>
+<p>思考，时刻警醒自己。</p>
+<h3 id="不能自负，鄙视他人"><a href="#不能自负，鄙视他人" class="headerlink" title="不能自负，鄙视他人"></a>不能自负，鄙视他人</h3><p>每个人诞生下来都有自己生活的权利。或许有些人诞生在王宫贵族，名门望族，有些人诞生在十恶</p>
+<p>不赦的杀人犯家里，不能以歧视的目光看待他人。获取你会谄媚首富之子，蔑视乞丐之子，殊不知</p>
+<p>三十年河东，三十年河西，莫欺少年穷！有钱人终究有一天会家道中落，没钱的人会终有一天有钱</p>
+<p>又有优势。你嘲笑别人，殊不知虎落平阳被犬欺！</p>
+<h3 id="切勿在背后妄论别人"><a href="#切勿在背后妄论别人" class="headerlink" title="切勿在背后妄论别人"></a>切勿在背后妄论别人</h3><p>古人云：“君子坦荡荡，小人常戚戚。”，在背后嚼舌根是小人行径，你妄论的人在得知你的言语之</p>
+<p>后，只会使你们的关系更加糟糕。</p>
+<h3 id="不要记仇"><a href="#不要记仇" class="headerlink" title="不要记仇"></a>不要记仇</h3><p>古人云：“宰相肚里能撑船”，“海纳百川，有容乃大”，宽阔的胸怀和胸襟是一个高情操的人所必需</p>
+<p>的优秀品质。</p>
+<h3 id="切勿以己之任，加之彼身"><a href="#切勿以己之任，加之彼身" class="headerlink" title="切勿以己之任，加之彼身"></a>切勿以己之任，加之彼身</h3><p>古人云：“人无完人，金无赤足。”，或许你自己在某方面很优秀，但是别人不如你，你不能够按照</p>
+<p>自己的标准要求别人。或许别人某些方面比你优秀呢，换位思考一下呢？是不是有一些强人所难？</p>
+<h3 id="己所不欲勿施于人"><a href="#己所不欲勿施于人" class="headerlink" title="己所不欲勿施于人"></a>己所不欲勿施于人</h3><p>自己都做不到的不要强加与别人</p>
+<h3 id="尊老爱幼"><a href="#尊老爱幼" class="headerlink" title="尊老爱幼"></a>尊老爱幼</h3><h3 id="位卑未敢忘忧国"><a href="#位卑未敢忘忧国" class="headerlink" title="位卑未敢忘忧国"></a>位卑未敢忘忧国</h3><h3 id="每日三省吾身"><a href="#每日三省吾身" class="headerlink" title="每日三省吾身"></a>每日三省吾身</h3><h3 id="自我勉励，不可妄自菲薄，我能行！"><a href="#自我勉励，不可妄自菲薄，我能行！" class="headerlink" title="自我勉励，不可妄自菲薄，我能行！"></a>自我勉励，不可妄自菲薄，我能行！</h3>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://wpa.qq.com/msgrd?uin=2037343920" target="_blank">Lee</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/02/18/Canvas/" class="pre-post btn btn-default" title='Canvas'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Canvas</span>
+        </a>
+    
+    
+        <a href="/2019/01/29/hexo常用命令笔记/" class="next-post btn btn-default" title='hexo常用命令笔记'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">hexo常用命令笔记</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'gd9N3iwmJMjWNJUuA71WlRj7-gzGzoHsz',
+            appKey: 'PlSGU0BVUIgyuS6bQ15rXq3i',
+            placeholder: 'Just go go(text or md)',
+            notify: true,
+            verify: false,
+            avatar: 'wavatar',
+            meta: 'nick,mail,link'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+                </main>
+                
+                    <!-- 文字内部结构 -->
+<aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#情操的培养"><span class="toc-text">情操的培养</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#热爱读书"><span class="toc-text">热爱读书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不断反思自己"><span class="toc-text">不断反思自己</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关爱他人"><span class="toc-text">关爱他人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#宽广的胸襟"><span class="toc-text">宽广的胸襟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#谦虚"><span class="toc-text">谦虚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生活阅历丰富"><span class="toc-text">生活阅历丰富</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高情商的培养"><span class="toc-text">高情商的培养</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生气的时候尽量不要说话"><span class="toc-text">生气的时候尽量不要说话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说话的语气一定要和气"><span class="toc-text">说话的语气一定要和气</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说话要有底气"><span class="toc-text">说话要有底气</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说话要守诚信"><span class="toc-text">说话要守诚信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#得饶人处且饶人"><span class="toc-text">得饶人处且饶人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#要多读书"><span class="toc-text">要多读书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不能自负，鄙视他人"><span class="toc-text">不能自负，鄙视他人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切勿在背后妄论别人"><span class="toc-text">切勿在背后妄论别人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要记仇"><span class="toc-text">不要记仇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切勿以己之任，加之彼身"><span class="toc-text">切勿以己之任，加之彼身</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#己所不欲勿施于人"><span class="toc-text">己所不欲勿施于人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尊老爱幼"><span class="toc-text">尊老爱幼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位卑未敢忘忧国"><span class="toc-text">位卑未敢忘忧国</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每日三省吾身"><span class="toc-text">每日三省吾身</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自我勉励，不可妄自菲薄，我能行！"><span class="toc-text">自我勉励，不可妄自菲薄，我能行！</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+  <!-- <img src="backtop.jpg" alt=""> -->
+
+</a>
+
+    <div class="times">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+              <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+              <script>
+              var now = new Date();
+              function createtime() {
+                  var grt= new Date("07/3/2018 8:00:00");//此处修改你的建站时间或者网站上线时间
+                  now.setTime(now.getTime()+250);
+                  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+              }
+              setInterval("createtime()",250);
+              </script>
+            </div>
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        很荣幸您成为本站的第
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        位访客
+        &nbsp; | &nbsp;
+        本站总浏览次数:
+
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2018-2019
+                </span> |
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | -->
+                <span>
+                    Made by <a href="//wpa.qq.com/msgrd?uin=2037343920" class="copyright-links" target="_blank" rel="nofollow">Lee</a> with ❤️ and Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+    
+      <script type="text/javascript" src="/snow/jquery.min.js"></script>
+      <script type="text/javascript" src="/snow/all.js"></script>
+      <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    
+
+
+
+</body>
+</html>

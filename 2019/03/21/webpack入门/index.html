@@ -1,0 +1,702 @@
+<script src="/assets/jq.min.js"></script>
+<script src="/assets/clipboard.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/jquery.pjax.min.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- <script type="text/javascript" src="assets/clipboard.min.js"></script>
+<script type="text/javascript" src="js/src/custom.js"></script> -->
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Lee">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="cZKtPkWm2R" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lee.js.org">
+
+    <!-- <script type="text/javascript" src="/snow/jquery.min.js"></script>
+    <script type="text/javascript" src="/snow/all.js"></script> -->
+    <!--SEO-->
+
+<meta name="description" content="Lee hexo lee.js.org"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>webpack入门 | Lee</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Lee" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?64ec872394d355ebe8bfd31c2dae6ff2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+		    i['GoogleAnalyticsObject'] = r;
+		    i[r] = i[r] || function() {
+		        (i[r].q = i[r].q || []).push(arguments)
+		    }, i[r].l = 1 * new Date();
+		    a = s.createElement(o),
+		    m = s.getElementsByTagName(o)[0];
+		    a.async = 1;
+		    a.src = g;
+		    m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'pFW527fHrjfI0si2w4NQ0w3cTw12AvvuohAu1PUfqKA', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+    <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    <!-- <div class="bg"></div>
+    <div class="bg bg--1"></div>
+    <div class="bg bg--2"></div>
+    <div class="bg bg--3"></div>
+    <div class="bg bg--4"></div>
+    <div class="bg bg--5"></div> -->
+
+    <style media="screen">
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgv7d0w8wj31oo11xgrb.jpg); */
+      background-image: url(https://luuman.github.io/background/bg-2.jpg);
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;
+      animation: imageAnimation 36s linear infinite 0s;
+      opacity: 0;
+
+    }
+    .bg--1 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvae03wnj31hc0vhqv6.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-4.jpg);
+        animation-delay: 6s;
+    }
+    .bg--2 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvbuwo0uj31hc0vgu0y.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-8.jpg);
+        animation-delay: 12s;
+    }
+    .bg--3 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvcltrqaj31z4140b2a.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-16.jpg);
+        animation-delay: 18s;
+    }
+    .bg--4 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdbkyxgj31hc0xchdt.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 24s;
+    }
+    .bg--5 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdwo51oj31hc0u0u0z.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 30s;
+    }
+    @-webkit-keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+    @keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+
+    /* body {
+        cursor: url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),auto;
+    } */
+    </style>
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+
+      <div id="aplayer-XgHNeRfs" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="1985290357" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true" data-fixed="true"></div>
+    <!-- 头部 -->
+<header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Lee Aaron'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> Just open your eyes , you got everything in the world </h2>
+            
+    	</div>
+    </div>
+</header>
+
+    <!-- 导航栏 -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://lee.js.org">Lee</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Frontend/"><i class="fa "></i>Frontend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Backend/"><i class="fa "></i>Backend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Essay/"><i class="fa "></i>Essay</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archives</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/aboutme/"><i class="fa "></i>Aboutme</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/music/"><i class="fa "></i>Music</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/"><i class="fa "></i>Magic</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="https://leeaaron6.gitee.io/"><i class="fa "></i>Simple</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="webpack入门">
+            
+	            webpack入门
+            
+        </h1>
+        <div class="post-meta">
+  <span class="fa-wrap">
+
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+  <a href="/aboutme/">
+      Lee
+  </a>
+</span>
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Frontend/">Frontend</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Html5/">Html5</a> <a class="tag-link" href="/tags/Webpack/">Webpack</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/21</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+            
+            
+    </div>
+    <!-- 画廊 -->
+
+
+    <div class="post-body post-content">
+        <p>最近在网上看了一些大神的webpack配置，整理收录一下<br><a id="more"></a></p>
+<h2 id="常见的webpack配置"><a href="#常见的webpack配置" class="headerlink" title="常见的webpack配置"></a>常见的webpack配置</h2><blockquote>
+<p>阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限，你可以快速浏览或直接跳过；如果你和十天前的我一样，对很多选项存在着疑惑，那花一段时间慢慢阅读本文，你的疑惑一定一个一个都会消失；如果你以前没怎么接触过Webpack，而你又你对webpack感兴趣，那么动手跟着本文中那个贯穿始终的例子写一次，写完以后你会发现你已明明白白的走进了Webpack的大门。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个常见的`webpack`配置文件</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">        entry: __dirname + <span class="string">"/app/main.js"</span>, <span class="comment">//已多次提及的唯一入口文件</span></span><br><span class="line">        output: &#123;</span><br><span class="line">            path: __dirname + <span class="string">"/build"</span>,</span><br><span class="line">            filename: <span class="string">"bundle-[hash].js"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        devtool: <span class="string">'none'</span>,</span><br><span class="line">        devServer: &#123;</span><br><span class="line">            contentBase: <span class="string">"./public"</span>, <span class="comment">//本地服务器所加载的页面所在的目录</span></span><br><span class="line">            historyApiFallback: <span class="literal">true</span>, <span class="comment">//不跳转</span></span><br><span class="line">            inline: <span class="literal">true</span>,</span><br><span class="line">            hot: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="built_in">module</span>: &#123;</span><br><span class="line">            rules: [&#123;</span><br><span class="line">                    test: <span class="regexp">/(\.jsx|\.js)$/</span>,</span><br><span class="line">                    use: &#123;</span><br><span class="line">                        loader: <span class="string">"babel-loader"</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">                    use: ExtractTextPlugin.extract(&#123;</span><br><span class="line">                        fallback: <span class="string">"style-loader"</span>,</span><br><span class="line">                        use: [&#123;</span><br><span class="line">                            loader: <span class="string">"css-loader"</span>,</span><br><span class="line">                            options: &#123;</span><br><span class="line">                                modules: <span class="literal">true</span>,</span><br><span class="line">                                localIdentName: <span class="string">'[name]__[local]--[hash:base64:5]'</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;, &#123;</span><br><span class="line">                            loader: <span class="string">"postcss-loader"</span></span><br><span class="line">                        &#125;],</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'版权所有，翻版必究'</span>),</span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">            template: __dirname + <span class="string">"/app/index.tmpl.html"</span> <span class="comment">//new 一个这个插件的实例，并传入相关的参数</span></span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin(),</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(),</span><br><span class="line">        <span class="keyword">new</span> ExtractTextPlugin(<span class="string">"style.css"</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="什么是WebPack，为什么要使用它？"><a href="#什么是WebPack，为什么要使用它？" class="headerlink" title="什么是WebPack，为什么要使用它？"></a>什么是WebPack，为什么要使用它？</h2><h3 id="为什要使用WebPack"><a href="#为什要使用WebPack" class="headerlink" title="为什要使用WebPack"></a>为什要使用WebPack</h3><p>现今的很多网页其实可以看做是功能丰富的应用，它们拥有着复杂的JavaScript代码和一大堆依赖包。为了简化开发的复杂度，前端社区涌现出了很多好的实践方法</p>
+<ul>
+<li><strong>模块化</strong>，让我们可以把复杂的程序细化为小的文件;</li>
+<li>类似于TypeScript这种在JavaScript基础上拓展的开发语言：使我们能够实现目前版本的JavaScript不能直接使用的特性，并且之后还能转换为JavaScript文件使浏览器可以识别；</li>
+<li>Scss，less等CSS预处理器</li>
+<li>…</li>
+</ul>
+<p>这些改进确实大大的提高了我们的开发效率，但是利用它们开发的文件往往需要进行额外的处理才能让浏览器识别,而手动处理又是非常繁琐的，这就为WebPack类的工具的出现提供了需求。</p>
+<h3 id="什么是Webpack"><a href="#什么是Webpack" class="headerlink" title="什么是Webpack"></a>什么是Webpack</h3><p>WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。</p>
+<p>WebPack和Grunt以及Gulp相比有什么特性<br>其实Webpack和另外两个并没有太多的可比性，Gulp/Grunt是一种能够优化前端的开发流程的工具，而WebPack是一种模块化的解决方案，不过Webpack的优点使得Webpack在很多场景下可以替代Gulp/Grunt类的工具。</p>
+<p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
+<p><img src="/img/gulp.webp" alt=""></p>
+<p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。</p>
+<p><img src="/img/webpack.webp" alt=""></p>
+<p>如果实在要把二者进行比较，Webpack的处理速度更快更直接，能打包更多不同类型的文件。</p>
+<h2 id="开始使用Webpack"><a href="#开始使用Webpack" class="headerlink" title="开始使用Webpack"></a>开始使用Webpack</h2><p>初步了解了Webpack工作方式后，我们一步步的开始学习使用Webpack。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Webpack可以使用npm安装，新建一个空的练习文件夹（此处命名为webpack sample project），在终端中转到该文件夹后执行下述指令就可以完成安装。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局安装</span></span><br><span class="line">npm install -g webpack</span><br><span class="line"><span class="comment">//安装到你的项目目录</span></span><br><span class="line">npm install --save-dev webpack</span><br></pre></td></tr></table></figure>
+<h3 id="正式使用Webpack前的准备"><a href="#正式使用Webpack前的准备" class="headerlink" title="正式使用Webpack前的准备"></a>正式使用Webpack前的准备</h3><ol>
+<li>在上述练习文件夹中创建一个package.json文件，这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等等。在终端中使用<code>npm init</code>命令可以自动创建这个package.json文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>输入这个命令后，终端会问你一系列诸如项目名称，项目描述，作者等信息，不过不用担心，如果你不准备在npm中发布你的模块，这些问题的答案都不重要，回车默认即可。</p>
+<ol start="2">
+<li>package.json文件已经就绪，我们在本项目中安装Webpack作为依赖包</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装Webpack</span></span><br><span class="line">npm install --save-dev webpack</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>回到之前的空文件夹，并在里面创建两个文件夹,app文件夹和public文件夹，app文件夹用来存放原始数据和我们将写的JavaScript模块，public文件夹用来存放之后供浏览器读取的文件（包括使用webpack打包生成的js文件以及一个index.html文件）。接下来我们再创建三个文件:</p>
+<ul>
+<li><code>index.html</code> –放在public文件夹中;</li>
+<li><code>Greeter.js</code>– 放在app文件夹中;</li>
+<li><p><code>main.js</code>– 放在app文件夹中;</p>
+<p>此时项目结构如下图所示:<br><img src="/img/f.webp" alt=""></p>
+<p>我们在<code>index.html</code>文件中写入最基础的html代码，它在这里目的在于引入打包后的js文件（这里我们先把之后打包后的js文件命名为<code>bundle.js</code>，之后我们还会详细讲述）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Webpack Sample Project&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=<span class="string">'root'</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script src="bundle.js"&gt;&lt;/</span>script&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<p>我们在<code>Greeter.js</code>中定义一个返回包含问候信息的html元素的函数,并依据CommonJS规范导出这个函数为一个模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Greeter.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> greet = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  greet.textContent = <span class="string">"Hi there and greetings!"</span>;</span><br><span class="line">  <span class="keyword">return</span> greet;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>main.js</code>文件中我们写入下述代码，用以把<code>Greeter</code>模块返回的节点插入页面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">const</span> greeter = <span class="built_in">require</span>(<span class="string">'./Greeter.js'</span>);</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">"#root"</span>).appendChild(greeter());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="正式使用Webpack"><a href="#正式使用Webpack" class="headerlink" title="正式使用Webpack"></a>正式使用Webpack</h3><p>webpack可以在终端中使用，在基本的使用方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</span><br><span class="line"># &#123;destination for bundled file&#125;处填写打包文件的存放路径</span><br><span class="line"># 填写路径的时候不用添加&#123;&#125;</span><br><span class="line">webpack &#123;entry file&#125; &#123;destination <span class="keyword">for</span> bundled file&#125;</span><br></pre></td></tr></table></figure>
+<p>指定入口文件后，webpack将自动识别项目所依赖的其它文件，不过需要注意的是如果你的webpack不是全局安装的，那么当你在终端中使用此命令时，需要额外指定其在node_modules中的地址，继续上面的例子，在终端中输入如下命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># webpack非全局安装的情况</span><br><span class="line">node_modules/.bin/webpack app/main.js public/bundle.js</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="/img/result.webp" alt=""></p>
+<p>可以看出<code>webpack</code>同时编译了<code>main.js</code> 和<code>Greeter.js</code>,现在打开<code>index.html</code>,可以看到如下结果<br><img src="/img/103d.webp" alt=""></p>
+<p>有没有很激动，已经成功的使用<code>Webpack</code>打包了一个文件了。不过在终端中进行复杂的操作，其实是不太方便且容易出错的，接下来看看<code>Webpack</code>的另一种更常见的使用方法。</p>
+<h3 id="通过配置文件来使用Webpack"><a href="#通过配置文件来使用Webpack" class="headerlink" title="通过配置文件来使用Webpack"></a>通过配置文件来使用Webpack</h3><p><code>Webpack</code>拥有很多其它的比较高级的功能（比如说本文后面会介绍的<code>loaders</code>和<code>plugins</code>），这些功能其实都可以通过命令行模式实现，但是正如前面提到的，这样不太方便且容易出错的，更好的办法是定义一个配置文件，这个配置文件其实也是一个简单的JavaScript模块，我们可以把所有的与打包相关的信息放在里面。</p>
+<p>继续上面的例子来说明如何写这个配置文件，在当前练习文件夹的根目录下新建一个名为<code>webpack.config.js</code>的文件，我们在其中写入如下所示的简单配置代码，目前的配置主要涉及到的内容是入口文件路径和打包后文件的存放路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,<span class="comment">//已多次提及的唯一入口文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">"/public"</span>,<span class="comment">//打包后的文件存放的地方</span></span><br><span class="line">    filename: <span class="string">"bundle.js"</span><span class="comment">//打包后输出文件的文件名</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>__dirname</code>是node.js中的一个全局变量，它指向当前执行脚本所在的目录。</p>
+</blockquote>
+<p>有了这个配置之后，再打包文件，只需在终端里运行<code>webpack(非全局安装需使用node_modules/.bin/webpack)</code>命令就可以了，这条命令会自动引用<code>webpack.config.js</code>文件中的配置选项，示例如下：<br><img src="/img/9e56.webp" alt=""></p>
+<p>又学会了一种使用<code>Webpack</code>的方法，这种方法不用管那烦人的命令行参数，有没有感觉很爽。如果我们可以连<code>webpack(非全局安装需使用node_modules/.bin/webpack)</code>这条命令都可以不用，那种感觉会不会更爽~，继续看下文。</p>
+<h3 id="更快捷的执行打包任务"><a href="#更快捷的执行打包任务" class="headerlink" title="更快捷的执行打包任务"></a>更快捷的执行打包任务</h3><p>在命令行中输入命令需要代码类似于node_modules/.bin/webpack这样的路径其实是比较烦人的，不过值得庆幸的是npm可以引导任务执行，对npm进行配置后可以在命令行中使用简单的npm start命令来替代上面略微繁琐的命令。在package.json中对scripts对象进行相关设置即可，设置方法如下。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-sample-project"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"Sample webpack project"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"Lee"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"3.10.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>package.json</code>中的<code>script</code>会安装一定顺序寻找命令对应位置，本地的<code>node_modules/.bin</code>路径就在这个寻找清单中，所以无论是全局还是局部安装的<code>Webpack</code>，你都不需要写前面那指明详细的路径了</p>
+</blockquote>
+<p>npm的<code>start</code>命令是一个特殊的脚本名称，其特殊性表现在，在命令行中使用<code>npm start</code>就可以执行其对于的命令，如果对应的此脚本名称不是start，想要在命令行中运行时，需要这样用<code>npm run {script name}</code>如<code>npm run build</code>，我们在命令行中输入<code>npm start</code>试试，输出结果如下：</p>
+<p><img src="/img/4163.webp" alt=""></p>
+<p>现在只需要使用<code>npm start</code>就可以打包文件了，有没有觉得webpack也不过如此嘛，不过不要太小瞧webpack，要充分发挥其强大的功能我们需要修改配置文件的其它选项，一项项来看。</p>
+<h2 id="Webpack的强大功能"><a href="#Webpack的强大功能" class="headerlink" title="Webpack的强大功能"></a>Webpack的强大功能</h2><h3 id="生成Source-Maps（使调试更容易）"><a href="#生成Source-Maps（使调试更容易）" class="headerlink" title="生成Source Maps（使调试更容易）"></a>生成Source Maps（使调试更容易）</h3><p>开发总是离不开调试，方便的调试能极大的提高开发效率，不过有时候通过打包后的文件，你是不容易找到出错了的地方，对应的你写的代码的位置的，<code>Source Maps</code>就是来帮我们解决这个问题的。</p>
+<p>通过简单的配置，webpack就可以在打包时为我们生成的<code>source maps</code>，这为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
+<p>在webpack的配置文件中配置<code>source maps</code>，需要配置<code>devtool</code>，它有以下四种不同的配置选项，各具优缺点，描述如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">devtool选项</th>
+<th style="text-align:center">配置结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>source-map</code></td>
+<td style="text-align:center">在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的<code>source map</code>，但是它会减慢打包速度；</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>cheap-module-source-map</code></td>
+<td style="text-align:center">在一个单独的文件中生成一个不带列映射的<code>map</code>，不带列映射提高了打包速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），会对调试造成不便；</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>eval-source-map</code></td>
+<td style="text-align:center">使用<code>eval</code>打包源文件模块，在同一个文件中生成干净的完整的<code>source map</code>。这个选项可以在不影响构建速度的前提下生成完整的<code>sourcemap</code>，但是对打包后输出的JS文件的执行具有性能和安全的隐患。在开发阶段这是一个非常好的选项，在生产阶段则一定不要启用这个选项；</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>cheap-module-eval-source-map</code></td>
+<td style="text-align:center">这是在打包文件时最快的生成<code>source map</code>的方法，生成的<code>Source Map</code> 会和打包后的<code>JavaScript</code>文件同行显示，没有列映射，和<code>eval-source-map</code>选项具有相似的缺点；</td>
+</tr>
+</tbody>
+</table>
+<p>正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。</p>
+<p>对小到中型的项目中，<code>eval-source-map</code>是一个很好的选项，再次强调你只应该开发阶段使用它，我们继续对上文新建的<code>webpack.config.js</code>，进行如下配置:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devtool: <span class="string">'eval-source-map'</span>,</span><br><span class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">"/public"</span>,</span><br><span class="line">    filename: <span class="string">"bundle.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>cheap-module-eval-source-map</code>方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用。</p>
+</blockquote>
+<h3 id="使用webpack构建本地服务器"><a href="#使用webpack构建本地服务器" class="headerlink" title="使用webpack构建本地服务器"></a>使用webpack构建本地服务器</h3><p>想不想让你的浏览器监听你的代码的修改，并自动刷新显示修改后的结果，其实Webpack提供一个可选的本地开发服务器，这个本地服务器基于node.js构建，可以实现你想要的这些功能，不过它是一个单独的组件，在webpack中进行配置之前需要单独安装它作为项目依赖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-dev-server</span><br></pre></td></tr></table></figure>
+<p>devserver作为webpack配置选项中的一项，以下是它的一些配置选项，更多配置可参考 <a href="https://webpack.js.org/configuration/dev-server/" target="_blank" rel="noopener">这里</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">devserver的配置选项</th>
+<th style="text-align:center">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">contentBase</td>
+<td style="text-align:center">默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public”目录）</td>
+</tr>
+<tr>
+<td style="text-align:center">port</td>
+<td style="text-align:center">设置默认监听端口，如果省略，默认为”8080”</td>
+</tr>
+<tr>
+<td style="text-align:center">inline</td>
+<td style="text-align:center">设置为<code>true</code>，当源文件改变时会自动刷新页面</td>
+</tr>
+<tr>
+<td style="text-align:center">historyApiFallback</td>
+<td style="text-align:center">在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html</td>
+</tr>
+</tbody>
+</table>
+<p>把这些命令加到webpack的配置文件中，现在的配置文件<code>webpack.config.js</code>如下所示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devtool: <span class="string">'eval-source-map'</span>,</span><br><span class="line"></span><br><span class="line">  entry:  __dirname + <span class="string">"/app/main.js"</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">"/public"</span>,</span><br><span class="line">    filename: <span class="string">"bundle.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./public"</span>,<span class="comment">//本地服务器所加载的页面所在的目录</span></span><br><span class="line">    historyApiFallback: <span class="literal">true</span>,<span class="comment">//不跳转</span></span><br><span class="line">    inline: <span class="literal">true</span><span class="comment">//实时刷新</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>package.json</code>中的<code>scripts</code>对象中添加如下命令，用以开启本地服务器：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">    <span class="string">"server"</span>: <span class="string">"webpack-dev-server --open"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>在终端中输入<code>npm run server</code>即可在本地的<code>8080</code>端口查看结果</p>
+<p><img src="/img/177187.webp" alt=""></p>
+<h3 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h3><p><code>Loaders</code>是<code>webpack</code>提供的最激动人心的功能之一了。通过使用不同的<code>loader</code>，<code>webpack</code>有能力调用外部的脚本或工具，实现对不同格式的文件的处理，比如说分析转换scss为css，或者把下一代的JS文件（ES6，ES7)转换为现代浏览器兼容的JS文件，对React的开发而言，合适的Loaders可以把React的中用到的JSX文件转换为JS文件。</p>
+<p>Loaders需要单独安装并且需要在<code>webpack.config.js</code>中的<code>modules</code>关键字下进行配置，<br>Loaders的配置包括以下几方面：<br>test：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）</p>
+<ul>
+<li><p>loader：loader的名称（必须）</p>
+</li>
+<li><p>include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</p>
+</li>
+<li><p>query：为loaders提供额外的设置选项（可选）</p>
+</li>
+</ul>
+<p>此时项目结构如下图所示:</p>
+<p><img src="/img/0702f.webp" alt=""></p>
+<p>我们在 <strong>index.html</strong> 文件中写入最基础的html代码，它在这里目的在于引入打包后的js文件（这里我们先把之后打包后的js文件命名为<code>bundle.js</code>，之后我们还会详细讲述）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- index.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Webpack Sample Project&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=<span class="string">'root'</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script src="bundle.js"&gt;&lt;/</span>script&gt;</span><br><span class="line">  &lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+<p>我们在<code>Greeter.js</code>中定义一个返回包含问候信息的<code>html</code>元素的函数,并依据<code>CommonJS</code>规范导出这个函数为一个模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Greeter.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> greet = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  greet.textContent = <span class="string">"Hi there and greetings!"</span>;</span><br><span class="line">  <span class="keyword">return</span> greet;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>main.js</code>文件中我们写入下述代码，用以把<code>Greeter模块</code>返回的节点插入页面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.js</span></span><br><span class="line"><span class="keyword">const</span> greeter = <span class="built_in">require</span>(<span class="string">'./Greeter.js'</span>);</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">"#root"</span>).appendChild(greeter());</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://wpa.qq.com/msgrd?uin=2037343920" target="_blank">Lee</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/02/18/Canvas/" class="next-post btn btn-default" title='Canvas'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Canvas</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'gd9N3iwmJMjWNJUuA71WlRj7-gzGzoHsz',
+            appKey: 'PlSGU0BVUIgyuS6bQ15rXq3i',
+            placeholder: 'Just go go(text or md)',
+            notify: true,
+            verify: false,
+            avatar: 'wavatar',
+            meta: 'nick,mail,link'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+                </main>
+                
+                    <!-- 文字内部结构 -->
+<aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的webpack配置"><span class="toc-text">常见的webpack配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是WebPack，为什么要使用它？"><span class="toc-text">什么是WebPack，为什么要使用它？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什要使用WebPack"><span class="toc-text">为什要使用WebPack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Webpack"><span class="toc-text">什么是Webpack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始使用Webpack"><span class="toc-text">开始使用Webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正式使用Webpack前的准备"><span class="toc-text">正式使用Webpack前的准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正式使用Webpack"><span class="toc-text">正式使用Webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过配置文件来使用Webpack"><span class="toc-text">通过配置文件来使用Webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更快捷的执行打包任务"><span class="toc-text">更快捷的执行打包任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Webpack的强大功能"><span class="toc-text">Webpack的强大功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成Source-Maps（使调试更容易）"><span class="toc-text">生成Source Maps（使调试更容易）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用webpack构建本地服务器"><span class="toc-text">使用webpack构建本地服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Loaders"><span class="toc-text">Loaders</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+  <!-- <img src="backtop.jpg" alt=""> -->
+
+</a>
+
+    <div class="times">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+              <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+              <script>
+              var now = new Date();
+              function createtime() {
+                  var grt= new Date("07/3/2018 8:00:00");//此处修改你的建站时间或者网站上线时间
+                  now.setTime(now.getTime()+250);
+                  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+              }
+              setInterval("createtime()",250);
+              </script>
+            </div>
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        很荣幸您成为本站的第
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        位访客
+        &nbsp; | &nbsp;
+        本站总浏览次数:
+
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2018-2019
+                </span> |
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | -->
+                <span>
+                    Made by <a href="//wpa.qq.com/msgrd?uin=2037343920" class="copyright-links" target="_blank" rel="nofollow">Lee</a> with ❤️ and Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+    
+      <script type="text/javascript" src="/snow/jquery.min.js"></script>
+      <script type="text/javascript" src="/snow/all.js"></script>
+      <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    
+
+
+
+</body>
+</html>

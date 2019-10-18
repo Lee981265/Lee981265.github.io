@@ -1,0 +1,793 @@
+<script src="/assets/jq.min.js"></script>
+<script src="/assets/clipboard.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/jquery.pjax.min.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- <script type="text/javascript" src="assets/clipboard.min.js"></script>
+<script type="text/javascript" src="js/src/custom.js"></script> -->
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Lee">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="cZKtPkWm2R" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lee.js.org">
+
+    <!-- <script type="text/javascript" src="/snow/jquery.min.js"></script>
+    <script type="text/javascript" src="/snow/all.js"></script> -->
+    <!--SEO-->
+
+<meta name="description" content="Lee hexo lee.js.org"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Hexo使用 | Lee</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Lee" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?64ec872394d355ebe8bfd31c2dae6ff2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+		    i['GoogleAnalyticsObject'] = r;
+		    i[r] = i[r] || function() {
+		        (i[r].q = i[r].q || []).push(arguments)
+		    }, i[r].l = 1 * new Date();
+		    a = s.createElement(o),
+		    m = s.getElementsByTagName(o)[0];
+		    a.async = 1;
+		    a.src = g;
+		    m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'pFW527fHrjfI0si2w4NQ0w3cTw12AvvuohAu1PUfqKA', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+    <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    <!-- <div class="bg"></div>
+    <div class="bg bg--1"></div>
+    <div class="bg bg--2"></div>
+    <div class="bg bg--3"></div>
+    <div class="bg bg--4"></div>
+    <div class="bg bg--5"></div> -->
+
+    <style media="screen">
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgv7d0w8wj31oo11xgrb.jpg); */
+      background-image: url(https://luuman.github.io/background/bg-2.jpg);
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;
+      animation: imageAnimation 36s linear infinite 0s;
+      opacity: 0;
+
+    }
+    .bg--1 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvae03wnj31hc0vhqv6.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-4.jpg);
+        animation-delay: 6s;
+    }
+    .bg--2 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvbuwo0uj31hc0vgu0y.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-8.jpg);
+        animation-delay: 12s;
+    }
+    .bg--3 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvcltrqaj31z4140b2a.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-16.jpg);
+        animation-delay: 18s;
+    }
+    .bg--4 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdbkyxgj31hc0xchdt.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 24s;
+    }
+    .bg--5 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdwo51oj31hc0u0u0z.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 30s;
+    }
+    @-webkit-keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+    @keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+
+    /* body {
+        cursor: url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),auto;
+    } */
+    </style>
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+
+      <div id="aplayer-XgHNeRfs" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="1985290357" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true" data-fixed="true"></div>
+    <!-- 头部 -->
+<header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Lee Aaron'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> Just open your eyes , you got everything in the world </h2>
+            
+    	</div>
+    </div>
+</header>
+
+    <!-- 导航栏 -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://lee.js.org">Lee</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Frontend/"><i class="fa "></i>Frontend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Backend/"><i class="fa "></i>Backend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Essay/"><i class="fa "></i>Essay</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archives</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/aboutme/"><i class="fa "></i>Aboutme</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/music/"><i class="fa "></i>Music</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/"><i class="fa "></i>Magic</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="https://leeaaron6.gitee.io/"><i class="fa "></i>Simple</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Hexo使用">
+            
+	            Hexo使用
+            
+        </h1>
+        <div class="post-meta">
+  <span class="fa-wrap">
+
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+  <a href="/aboutme/">
+      Lee
+  </a>
+</span>
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Essay/">Essay</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/07/05</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>469</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    <!-- 画廊 -->
+
+
+    <div class="post-body post-content">
+        <p>经过一段时间的折腾终于用 Hexo + GitHub 搭建起了一个个人博客站点，第一时间边学边写，弄出了这第一篇博客，心里甚是欢喜。<a id="more"></a></p>
+<p>Hexo是一款“快速、简洁且高效的博客框架”，支持 Markdown 的所有功能。所以，写出一篇博客必须学习 Hexo 和 Markdown 的使用规则。</p>
+<h2 id="配置文件命名规则和路由地址"><a href="#配置文件命名规则和路由地址" class="headerlink" title="配置文件命名规则和路由地址"></a>配置文件命名规则和路由地址</h2><p>Hexo 默认以标题作为文件名称，可以通过 Hexo 的配置文件 _config.yml 中的 new_post_name 参数来改变默认的文件名称，例如：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">new_post_name:</span> <span class="symbol">:year-</span><span class="symbol">:month-</span><span class="symbol">:day-</span><span class="symbol">:title</span>.md</span><br></pre></td></tr></table></figure>
+<p>当创建博客时，就会以这种格式生成Markdown文件，如这篇博客的文件名就生成 2017-01-13-hexo-blog.md 这种形式。其中相关变量说明如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">:title</td>
+<td style="text-align:center">标题（小写，空格将会被替换为短杠）</td>
+</tr>
+<tr>
+<td style="text-align:center">:year</td>
+<td style="text-align:center">创建的年份，如：2017</td>
+</tr>
+<tr>
+<td style="text-align:center">:month</td>
+<td style="text-align:center">创建的月份（有前导零），如：01</td>
+</tr>
+<tr>
+<td style="text-align:center">:i_month</td>
+<td style="text-align:center">创建的月份（无前导零），如：1</td>
+</tr>
+<tr>
+<td style="text-align:center">:day</td>
+<td style="text-align:center">创建的日期（有前导零），如：09</td>
+</tr>
+<tr>
+<td style="text-align:center">:i_day</td>
+<td style="text-align:center">创建的月份（无前导零），如：9</td>
+</tr>
+</tbody>
+</table>
+<p>配置浏览器地址栏中的URL。同样在 Hexo 的配置文件 _config.yml 中, 配置 permalink 属性 ，例如：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">permalink:</span> /blog/<span class="symbol">:year/</span><span class="symbol">:month/</span><span class="symbol">:day/</span><span class="symbol">:title/</span></span><br></pre></td></tr></table></figure>
+<p>当在地址栏访问时，就会如下方式呈现出来：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>localhost:<span class="number">4000</span><span class="regexp">/blog/</span><span class="number">2017</span><span class="regexp">/01/</span><span class="number">13</span><span class="regexp">/hexo-blog/</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><p>在写博客时,一定注意不要写这些字符,如果要写,就进行转义<br>有些人可能说可以使用反斜杠 \ 来处理,我这里不建议,因为我使用的时候没有解决问题。<br>下面是比较常见的几个:<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">! &amp;#<span class="number">33</span>; — 惊叹号Exclamation mark</span><br><span class="line"></span><br><span class="line">” &amp;#<span class="number">34</span>; &amp;quot; 双引号Quotation mark</span><br><span class="line"></span><br><span class="line"># &amp;#<span class="number">35</span>; — 数字标志Number sign</span><br><span class="line"></span><br><span class="line">$ &amp;#<span class="number">36</span>; — 美元标志Dollar sign</span><br><span class="line"></span><br><span class="line">% &amp;#<span class="number">37</span>; — 百分号Percent sign</span><br><span class="line"></span><br><span class="line">&amp; &amp;#<span class="number">38</span>; &amp;amp; Ampersand</span><br><span class="line"></span><br><span class="line">‘ &amp;#<span class="number">39</span>; — 单引号Apostrophe</span><br><span class="line"></span><br><span class="line">( &amp;#<span class="number">40</span>; — 小括号左边部分Left parenthesis</span><br><span class="line"></span><br><span class="line">) &amp;#<span class="number">41</span>; — 小括号右边部分Right parenthesis</span><br><span class="line"></span><br><span class="line">* &amp;#<span class="number">42</span>; — 星号Asterisk</span><br><span class="line"></span><br><span class="line">+ &amp;#<span class="number">43</span>; — 加号Plus sign</span><br><span class="line"></span><br><span class="line">&lt; &amp;#<span class="number">60</span>; &amp;lt; 小于号Less than</span><br><span class="line"></span><br><span class="line">= &amp;#<span class="number">61</span>; — 等于符号Equals sign</span><br><span class="line"></span><br><span class="line">&gt; &amp;#<span class="number">62</span>; &amp;gt; 大于号Greater than</span><br><span class="line"></span><br><span class="line">? &amp;#<span class="number">63</span>; — 问号Question mark</span><br><span class="line"></span><br><span class="line">@ &amp;#<span class="number">64</span>; — Commercial at</span><br><span class="line"></span><br><span class="line">[ &amp;#<span class="number">91</span>; --- 中括号左边部分Left square bracket</span><br><span class="line"></span><br><span class="line">\ &amp;#<span class="number">92</span>; --- 反斜杠Reverse solidus (backslash)</span><br><span class="line"></span><br><span class="line">] &amp;#<span class="number">93</span>; — 中括号右边部分Right square bracket</span><br><span class="line"></span><br><span class="line">&#123; &amp;#<span class="number">123</span>; — 大括号左边部分Left curly brace</span><br><span class="line"></span><br><span class="line">| &amp;#<span class="number">124</span>; — 竖线Vertical bar</span><br><span class="line"></span><br><span class="line">&#125; &amp;#<span class="number">125</span>; — 大括号右边部分Right curly brace</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>特别注意的是小括号 ( ) 大括号 { } ,如果不小心写了,你执行hexo s –debug可能报一些莫名其妙的错误!</em></strong></p>
+<h2 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h2><p>在命令行中用如下命令创建一篇新的文章<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">new</span> [layout] &lt;<span class="built_in">title</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>布局（layout）</th>
+<th style="text-align:center">存储路径</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>post</td>
+<td style="text-align:center">source/_posts</td>
+<td style="text-align:right">默认，可以直接发布</td>
+</tr>
+<tr>
+<td>page</td>
+<td style="text-align:center">source</td>
+<td style="text-align:right">在source下新建一个文件夹</td>
+</tr>
+<tr>
+<td>draft</td>
+<td style="text-align:center">source/_drafts</td>
+<td style="text-align:right">新建文件将保持到_drafts中</td>
+</tr>
+</tbody>
+</table>
+<p>可以用 publish 命令将草稿移动到 source/_posts 文件夹下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p>经过上面上面一系列的准备工作，现在差不多就可以安心的写作了。打开 source/_posts 文件夹下刚创建的 Markdown 文件，你会发现有如下内容：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: hexo-blog</span><br><span class="line">date: 2017-01-13 16:07:32</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>注意，这里的 title 是可以随便改的，当然了 date 也是可以改，不过没有改的必要；这里要说一下 tags 这个属性，如果需要配置多个有两种方式：<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tags:</span> [tag1, tag2, tag3]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tags:</span></span><br><span class="line">    - tag1</span><br><span class="line">    - tag2</span><br><span class="line">    - tag3</span><br></pre></td></tr></table></figure>
+<p>Hexo 是支持 Markdown 的所有功能的，所以，下面去学习一下 Markdown 的语法规范</p>
+<h3 id="斜体和粗体"><a href="#斜体和粗体" class="headerlink" title="斜体和粗体"></a>斜体和粗体</h3><p>写法：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*斜体文本*</span>    <span class="emphasis">_斜体文本_</span></span><br><span class="line"><span class="strong">**粗体文本**</span>    <span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">***粗斜体文本**</span>*    <span class="strong">___粗斜体文本__</span>_</span><br></pre></td></tr></table></figure></p>
+<p>效果：<br><em>斜体文本</em>    <em>斜体文本</em><br><strong>粗体文本</strong>    <strong>粗体文本</strong><br><strong><em>粗斜体文本</em></strong>    <strong><em>粗斜体文本</em></strong></p>
+<h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><p>写法：<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure></p>
+<h3 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h3><p>写法：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">行内形式：[<span class="string">我的博客</span>](<span class="link">https://Lee981265.github.io/</span>)</span><br><span class="line">参考形式：[<span class="string">我的博客</span>][<span class="symbol">1</span>]，有一个很好的平台-[<span class="string">简书</span>][<span class="symbol">2</span>].</span><br><span class="line">这个链接用 yahoo 作为网址变量 [<span class="string">Yahoo!</span>][<span class="symbol">yahoo</span>].</span><br><span class="line">[<span class="symbol">yahoo</span>]: <span class="link">http://www.yahoo.com/</span></span><br><span class="line">[<span class="symbol">1</span>]:<span class="link">https://Lee981265.github.io/</span></span><br><span class="line">[<span class="symbol">2</span>]:<span class="link">http://www.jianshu.com/</span></span><br><span class="line">自动链接：我的博客地址<span class="xml"><span class="tag">&lt;<span class="name">https:</span>//<span class="attr">Lee981265.github.io</span>/&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>效果：<br>行内形式：我的博客<br>参考形式：[我的博客][1]，有一个很好的平台-[简书][2]<br>[1]:<a href="https://Lee981265.github.io/" target="_blank" rel="noopener">https://Lee981265.github.io/</a><br>[2]:<a href="http://www.jianshu.com/" target="_blank" rel="noopener">http://www.jianshu.com/</a><br>自动链接：我的博客地址<a href="https://Lee981265.github.io/" target="_blank" rel="noopener">https://Lee981265.github.io/</a></p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h4><p>写法：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>无序列表项1</span><br><span class="line"><span class="bullet">+ </span>无序列表项2</span><br><span class="line"><span class="bullet">- </span>无序列表项3</span><br></pre></td></tr></table></figure></p>
+<p>效果：</p>
+<ul>
+<li>无序列表项1</li>
+</ul>
+<ul>
+<li>无序列表项2</li>
+</ul>
+<ul>
+<li>无序列表项3</li>
+</ul>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>写法：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 有序列表项<span class="number">1</span></span><br><span class="line"><span class="number">2.</span> 有序列表项<span class="number">2</span></span><br><span class="line"><span class="number">3.</span> 有序列表项<span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>效果</p>
+<ol>
+<li>有序列表项1</li>
+<li>有序列表项2</li>
+<li>有序列表项3</li>
+</ol>
+<h4 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h4><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 列出所有元素：</span><br><span class="line">    -<span class="ruby"> 无序列表元素 A</span></span><br><span class="line"><span class="ruby">        <span class="number">1</span>. 元素 A 的有序子列表</span></span><br><span class="line"><span class="ruby">    - 前面加四个空格</span></span><br><span class="line"><span class="ruby"><span class="number">2</span>. 列表里的多段换行：</span></span><br><span class="line"><span class="ruby">    前面必须加四个空格，</span></span><br><span class="line"><span class="ruby">    这样换行，整体的格式不会乱</span></span><br><span class="line"><span class="ruby"><span class="number">3</span>. 列表里引用：</span></span><br><span class="line"><span class="ruby"></span></span><br><span class="line"><span class="ruby">    &gt; 前面空一行</span></span><br><span class="line"><span class="ruby">    &gt; 仍然需要在 &gt;  前面加四个空格</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>列出所有元素：<ul>
+<li>无序列表元素 A<ol>
+<li>元素 A 的有序子列表</li>
+</ol>
+</li>
+<li>前面加四个空格</li>
+</ul>
+</li>
+<li>列表里的多段换行：<br> 前面必须加四个空格，<br> 这样换行，整体的格式不会乱</li>
+<li><p>列表里引用：</p>
+<blockquote>
+<p>前面空一行<br>仍然需要在 &gt;  前面加四个空格</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><ol>
+<li><p>普通引用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 引用文本前使用 [大于号+空格]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 折行可以不加，新起一行都要加上哦</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用里嵌套引用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 最外层引用</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> &gt; 多一个 &gt; 嵌套一层引用</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> &gt; &gt; 可以嵌套很多层</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用里嵌套列表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> - 这是引用里嵌套的一个列表</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> - 还可以有子列表</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">     * 子列表需要从 - 之后延后四个空格开始</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>在 Hexo 中插入图片，首先需要将图片放在 source/img/ 文件夹下，然后如下方式进行插入<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">这是图片说明</span>](<span class="link">/img/Leebolg.png</span>)</span><br><span class="line"></span><br><span class="line">这个链接用 1 作为网址变量 [ Google] [ 1].</span><br><span class="line">然后在文档的结尾位变量赋值(网址)</span><br><span class="line"></span><br><span class="line">  [1]: http: //www.google.com/logo.png</span><br><span class="line">  也可以使用 HTML 的图片语法来自定义图片的宽高大小</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://lee981265.github.io/img/Leebolg.png"</span> <span class="attr">width</span>=<span class="string">"240"</span> <span class="attr">height</span>=<span class="string">"275"</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>效果图如下：<br><img src="/img/Leebolg.png" alt="这是图片说明"></p>
+<p><img src="https://lee981265.github.io/img/Leebolg.png" alt="这是图片说明" width="240" height="275"></p>
+
+<h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p>如果另起一行，只需在当前行结尾加 2 个空格<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在当前行的结尾加 <span class="number">2</span> 个空格  </span><br><span class="line">这行就会新起一行</span><br><span class="line">如果是要起一个新段落，只需要空出一行即可。</span><br></pre></td></tr></table></figure></p>
+<h3 id="分隔符"><a href="#分隔符" class="headerlink" title="分隔符"></a>分隔符</h3><p>如果你有写分割线的习惯，可以新起一行输入三个减号-。当前后都有段落时，请空出一行：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">前面的段落</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"><span class="string">后面的段落</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="小型文本"><a href="#小型文本" class="headerlink" title="小型文本"></a>小型文本</h3><p>Markdown语法：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">small</span>&gt;</span>文本内容<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>预览效果：<br>我是正常文字<br><small>我是小型文字</small></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>用html的注释，好像只有这样？<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注释 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<!-- 注释 -->
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">| Tables        |</span> Are           <span class="params">| Cool  |</span></span><br><span class="line"><span class="params">| ------------- |</span><span class="symbol">:-------------</span><span class="symbol">:|</span> -----<span class="symbol">:|</span></span><br><span class="line"><span class="params">| col 3 is      |</span> right-aligned <span class="params">| $1600 |</span></span><br><span class="line"><span class="params">| col 2 is      |</span> centered      <span class="params">|   $12 |</span></span><br><span class="line"><span class="params">| zebra stripes |</span> are neat      <span class="params">|    $1 |</span></span><br><span class="line"></span><br><span class="line"><span class="params">| 表头1|</span>表头<span class="number">2</span><span class="params">|表头3|</span>表头<span class="number">4</span></span><br><span class="line"><span class="params">|-|</span> <span class="symbol">:-</span> <span class="params">| :-: |</span> -: <span class="params">|</span></span><br><span class="line"><span class="params">|</span>默认左对齐<span class="params">|左对齐|</span>居中对其<span class="params">|右对齐|</span></span><br><span class="line"><span class="params">|默认左对齐|</span>左对齐<span class="params">|居中对其|</span>右对齐<span class="params">|</span></span><br><span class="line"><span class="params">|</span>默认左对齐<span class="params">|左对齐|</span>居中对其<span class="params">|右对齐|</span></span><br><span class="line"></span><br><span class="line"><span class="params">| 参数           |</span> 说明                 <span class="params">|   默认值            |</span></span><br><span class="line"><span class="params">| ------------- |</span><span class="symbol">:-------------------</span><span class="symbol">:|</span><span class="symbol">:------------------</span><span class="symbol">:|</span></span><br><span class="line"><span class="params">| host          |</span> 远程主机的地址         <span class="params">|                    |</span></span><br><span class="line"><span class="params">| user          |</span> 使用者名称            <span class="params">|                    |</span></span><br><span class="line"><span class="params">| root          |</span>  远程主机的根目录      <span class="params">|                    |</span></span><br><span class="line"><span class="params">| port          |</span> 端口                 <span class="params">|       22           |</span></span><br><span class="line"><span class="params">| delete        |</span> 删除远程主机上的旧文件   <span class="params">|  <span class="literal">true</span>              |</span></span><br><span class="line"><span class="params">| verbose       |</span> 显示调试信息           <span class="params">|   <span class="literal">true</span>             |</span></span><br><span class="line"><span class="params">| ignore_errors |</span> 忽略错误              <span class="params">|     <span class="literal">false</span>          |</span></span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>表头1</th>
+<th style="text-align:left">表头2</th>
+<th style="text-align:center">表头3</th>
+<th style="text-align:right">表头4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认左对齐</td>
+<td style="text-align:left">左对齐</td>
+<td style="text-align:center">居中对其</td>
+<td style="text-align:right">右对齐</td>
+</tr>
+<tr>
+<td>默认左对齐</td>
+<td style="text-align:left">左对齐</td>
+<td style="text-align:center">居中对其</td>
+<td style="text-align:right">右对齐</td>
+</tr>
+<tr>
+<td>默认左对齐</td>
+<td style="text-align:left">左对齐</td>
+<td style="text-align:center">居中对其</td>
+<td style="text-align:right">右对齐</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>host</td>
+<td style="text-align:center">远程主机的地址</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>user</td>
+<td style="text-align:center">使用者名称</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>root</td>
+<td style="text-align:center">远程主机的根目录</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>port</td>
+<td style="text-align:center">端口</td>
+<td style="text-align:center">22</td>
+</tr>
+<tr>
+<td>delete</td>
+<td style="text-align:center">删除远程主机上的旧文件</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td style="text-align:center">显示调试信息</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td>ignore_errors</td>
+<td style="text-align:center">忽略错误</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>记录了一下 Hexo 写博客的环境配置，了解创建博客的过程和一些相关的变量，然后学习一下 Markdown 的基本语法规范，下次有时间在将 Markdown 更深入的使用方法记录一下。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://wpa.qq.com/msgrd?uin=2037343920" target="_blank">Lee</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/07/11/DOM/" class="pre-post btn btn-default" title='DOM'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">DOM</span>
+        </a>
+    
+    
+        <a href="/2018/07/05/Git进阶/" class="next-post btn btn-default" title='Git进阶'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Git进阶</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'gd9N3iwmJMjWNJUuA71WlRj7-gzGzoHsz',
+            appKey: 'PlSGU0BVUIgyuS6bQ15rXq3i',
+            placeholder: 'Just go go(text or md)',
+            notify: true,
+            verify: false,
+            avatar: 'wavatar',
+            meta: 'nick,mail,link'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+                </main>
+                
+                    <!-- 文字内部结构 -->
+<aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件命名规则和路由地址"><span class="toc-text">配置文件命名规则和路由地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊字符"><span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建博客"><span class="toc-text">创建博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写作"><span class="toc-text">写作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#斜体和粗体"><span class="toc-text">斜体和粗体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分级标题"><span class="toc-text">分级标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#超链接"><span class="toc-text">超链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无序列表："><span class="toc-text">无序列表：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有序列表"><span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表嵌套"><span class="toc-text">列表嵌套</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入图片"><span class="toc-text">插入图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#换行"><span class="toc-text">换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分隔符"><span class="toc-text">分隔符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小型文本"><span class="toc-text">小型文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-text">表格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+  <!-- <img src="backtop.jpg" alt=""> -->
+
+</a>
+
+    <div class="times">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+              <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+              <script>
+              var now = new Date();
+              function createtime() {
+                  var grt= new Date("07/3/2018 8:00:00");//此处修改你的建站时间或者网站上线时间
+                  now.setTime(now.getTime()+250);
+                  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+              }
+              setInterval("createtime()",250);
+              </script>
+            </div>
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        很荣幸您成为本站的第
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        位访客
+        &nbsp; | &nbsp;
+        本站总浏览次数:
+
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2018-2019
+                </span> |
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | -->
+                <span>
+                    Made by <a href="//wpa.qq.com/msgrd?uin=2037343920" class="copyright-links" target="_blank" rel="nofollow">Lee</a> with ❤️ and Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+    
+      <script type="text/javascript" src="/snow/jquery.min.js"></script>
+      <script type="text/javascript" src="/snow/all.js"></script>
+      <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    
+
+
+
+</body>
+</html>

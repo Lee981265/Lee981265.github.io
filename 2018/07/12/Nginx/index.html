@@ -1,0 +1,564 @@
+<script src="/assets/jq.min.js"></script>
+<script src="/assets/clipboard.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/jquery.pjax.min.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- <script type="text/javascript" src="assets/clipboard.min.js"></script>
+<script type="text/javascript" src="js/src/custom.js"></script> -->
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Lee">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="cZKtPkWm2R" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lee.js.org">
+
+    <!-- <script type="text/javascript" src="/snow/jquery.min.js"></script>
+    <script type="text/javascript" src="/snow/all.js"></script> -->
+    <!--SEO-->
+
+<meta name="description" content="Lee hexo lee.js.org"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Nginx快速开端口 | Lee</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Lee" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?64ec872394d355ebe8bfd31c2dae6ff2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+		    i['GoogleAnalyticsObject'] = r;
+		    i[r] = i[r] || function() {
+		        (i[r].q = i[r].q || []).push(arguments)
+		    }, i[r].l = 1 * new Date();
+		    a = s.createElement(o),
+		    m = s.getElementsByTagName(o)[0];
+		    a.async = 1;
+		    a.src = g;
+		    m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'pFW527fHrjfI0si2w4NQ0w3cTw12AvvuohAu1PUfqKA', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+    <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    <!-- <div class="bg"></div>
+    <div class="bg bg--1"></div>
+    <div class="bg bg--2"></div>
+    <div class="bg bg--3"></div>
+    <div class="bg bg--4"></div>
+    <div class="bg bg--5"></div> -->
+
+    <style media="screen">
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgv7d0w8wj31oo11xgrb.jpg); */
+      background-image: url(https://luuman.github.io/background/bg-2.jpg);
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;
+      animation: imageAnimation 36s linear infinite 0s;
+      opacity: 0;
+
+    }
+    .bg--1 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvae03wnj31hc0vhqv6.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-4.jpg);
+        animation-delay: 6s;
+    }
+    .bg--2 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvbuwo0uj31hc0vgu0y.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-8.jpg);
+        animation-delay: 12s;
+    }
+    .bg--3 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvcltrqaj31z4140b2a.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-16.jpg);
+        animation-delay: 18s;
+    }
+    .bg--4 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdbkyxgj31hc0xchdt.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 24s;
+    }
+    .bg--5 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdwo51oj31hc0u0u0z.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 30s;
+    }
+    @-webkit-keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+    @keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+
+    /* body {
+        cursor: url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),auto;
+    } */
+    </style>
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+
+      <div id="aplayer-XgHNeRfs" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="1985290357" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true" data-fixed="true"></div>
+    <!-- 头部 -->
+<header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Lee Aaron'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> Just open your eyes , you got everything in the world </h2>
+            
+    	</div>
+    </div>
+</header>
+
+    <!-- 导航栏 -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://lee.js.org">Lee</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Frontend/"><i class="fa "></i>Frontend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Backend/"><i class="fa "></i>Backend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Essay/"><i class="fa "></i>Essay</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archives</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/aboutme/"><i class="fa "></i>Aboutme</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/music/"><i class="fa "></i>Music</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/"><i class="fa "></i>Magic</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="https://leeaaron6.gitee.io/"><i class="fa "></i>Simple</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Nginx快速开端口">
+            
+	            Nginx快速开端口
+            
+        </h1>
+        <div class="post-meta">
+  <span class="fa-wrap">
+
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+  <a href="/aboutme/">
+      Lee
+  </a>
+</span>
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Backend/">Backend</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Nginx/">Nginx</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/07/12</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>462</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    <!-- 画廊 -->
+
+
+    <div class="post-body post-content">
+        <p>对于一个前端来说，运行一些代码有些特殊情况需要开设端口。起初我使用静态服务器用sumlime,后面陆续使用wampserver,xampp;但是有一次换电脑了，需要重新下载，糟糕的的是突然下载不了，项目于是停止不前；庆幸的是以为Java同事告诉我用Nginx开设端口。我在这里把我这个方法分享给大家！<a id="more"></a></p>
+<h2 id="第一步下载Nginx"><a href="#第一步下载Nginx" class="headerlink" title="第一步下载Nginx"></a>第一步下载Nginx</h2><p>下载地址：<a href="http://nginx.org/" target="_blank" rel="noopener">http://nginx.org/</a></p>
+<h2 id="第二步配置config"><a href="#第二步配置config" class="headerlink" title="第二步配置config"></a>第二步配置config</h2><p>进入conf/nignx.conf文件具体配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">    #user  nobody;</span><br><span class="line">    worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    #error_log  logs/error.log;</span><br><span class="line">    #error_log  logs/error.log  notice;</span><br><span class="line">    #error_log  logs/error.log  info;</span><br><span class="line"></span><br><span class="line">    #pid        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    events &#123;</span><br><span class="line">        worker_connections  <span class="number">1024</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    http &#123;</span><br><span class="line">        include       mime.types;</span><br><span class="line">        default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">        #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span><br><span class="line">        #                  '$status $body_bytes_sent "$http_referer" '</span><br><span class="line">        #                  '"$http_user_agent" "$http_x_forwarded_for"';</span><br><span class="line"></span><br><span class="line">        #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">        sendfile        on;</span><br><span class="line">        #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">        #keepalive_timeout  0;</span><br><span class="line">        keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">        #gzip  on;</span><br><span class="line"></span><br><span class="line">        server &#123;</span><br><span class="line">            listen       80; #端口</span><br><span class="line">            server_name  localhost;</span><br><span class="line"></span><br><span class="line">            #charset koi8-r;</span><br><span class="line"></span><br><span class="line">            #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root   F:\GitMap1\echarts3-chinese-map-drill-down; #真实路径</span><br><span class="line">                index  index.html index.htm; #可识别的目标文件</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">            # redirect server error pages to the static page /50x.html</span><br><span class="line">            #</span><br><span class="line">            error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /<span class="number">50</span>x.html;</span><br><span class="line">            location = <span class="regexp">/50x.html &#123;</span></span><br><span class="line"><span class="regexp">                root   html;</span></span><br><span class="line"><span class="regexp">            &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">            # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></span><br><span class="line"><span class="regexp">            #</span></span><br><span class="line"><span class="regexp">            #location ~ \.php$ &#123;</span></span><br><span class="line"><span class="regexp">            #    proxy_pass   http:/</span><span class="regexp">/127.0.0.1;</span></span><br><span class="line"><span class="regexp">            #&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">            # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="regexp">            #</span></span><br><span class="line"><span class="regexp">            #location ~ \.php$ &#123;</span></span><br><span class="line"><span class="regexp">            #    root           html;</span></span><br><span class="line"><span class="regexp">            #    fastcgi_pass   127.0.0.1:9000;</span></span><br><span class="line"><span class="regexp">            #    fastcgi_index  index.php;</span></span><br><span class="line"><span class="regexp">            #    fastcgi_param  SCRIPT_FILENAME  /</span>scripts$fastcgi_script_name;</span><br><span class="line">            #    include        fastcgi_params;</span><br><span class="line">            #&#125;</span><br><span class="line"></span><br><span class="line">            # deny access to .htaccess files, if Apache's document root</span><br><span class="line">            # concurs with nginx's one</span><br><span class="line">            #</span><br><span class="line">            #location ~ /\.ht &#123;</span><br><span class="line">            #    deny  all;</span><br><span class="line">            #&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        server &#123;</span><br><span class="line">            listen       8000; #端口</span><br><span class="line"></span><br><span class="line">            server_name  localhost;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root   F:\GitMap1\echarts3-chinese-map-drill-down; #真实路径</span><br><span class="line">                index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        server &#123;</span><br><span class="line">            listen       <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">            server_name  localhost;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root   F:\NewRequest\jingqingan_ganzhou;</span><br><span class="line">                index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        # another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">        #</span><br><span class="line">        #server &#123;</span><br><span class="line">        #    listen       8000;</span><br><span class="line">        #    listen       somename:8080;</span><br><span class="line">        #    server_name  somename  alias  another.alias;</span><br><span class="line"></span><br><span class="line">        #    location / &#123;</span><br><span class="line">        #        root   html;</span><br><span class="line">        #        index  index.html index.htm;</span><br><span class="line">        #    &#125;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        # HTTPS server</span><br><span class="line">        #</span><br><span class="line">        #server &#123;</span><br><span class="line">        #    listen       443 ssl;</span><br><span class="line">        #    server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #    ssl_certificate      cert.pem;</span><br><span class="line">        #    ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">        #    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">        #    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">        #    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">        #    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">        #    location / &#123;</span><br><span class="line">        #        root   html;</span><br><span class="line">        #        index  index.html index.htm;</span><br><span class="line">        #    &#125;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Windows下使用nginx命令启动"><a href="#Windows下使用nginx命令启动" class="headerlink" title="Windows下使用nginx命令启动"></a>Windows下使用nginx命令启动</h2><p>在Windows下使用Nginx，我们需要掌握一些基本的操作命令，比如：启动、停止Nginx服务，重新载入Nginx等，下面我就进行一些简单的介绍。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;start nginx</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx.exe</span><br></pre></td></tr></table></figure>
+<p><strong><em>注：建议使用第一种，第二种会使你的cmd窗口一直处于执行中，不能进行其他命令操作。</em></strong></p>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx.exe -s stop</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx.exe -s quit</span><br></pre></td></tr></table></figure>
+<p><strong><em>注：stop是快速停止nginx，可能并不保存相关信息；quit是完整有序的停止nginx，并保存相关信息。</em></strong></p>
+<h3 id="重新载入Nginx"><a href="#重新载入Nginx" class="headerlink" title="重新载入Nginx"></a>重新载入Nginx</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx.exe -s reload</span><br></pre></td></tr></table></figure>
+<p>当配置信息修改，需要重新载入这些配置时使用此命令。</p>
+<h3 id="重新打开日志文件："><a href="#重新打开日志文件：" class="headerlink" title="重新打开日志文件："></a>重新打开日志文件：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx.exe -s reopen</span><br></pre></td></tr></table></figure>
+<h3 id="查看Nginx版本："><a href="#查看Nginx版本：" class="headerlink" title="查看Nginx版本："></a>查看Nginx版本：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\server\nginx<span class="number">-1.0</span><span class="number">.2</span>&gt;nginx -v</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://wpa.qq.com/msgrd?uin=2037343920" target="_blank">Lee</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/07/12/初识PHP/" class="pre-post btn btn-default" title='初识PHP'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">初识PHP</span>
+        </a>
+    
+    
+        <a href="/2018/07/12/简易Python/" class="next-post btn btn-default" title='简易Python'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">简易Python</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'gd9N3iwmJMjWNJUuA71WlRj7-gzGzoHsz',
+            appKey: 'PlSGU0BVUIgyuS6bQ15rXq3i',
+            placeholder: 'Just go go(text or md)',
+            notify: true,
+            verify: false,
+            avatar: 'wavatar',
+            meta: 'nick,mail,link'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+                </main>
+                
+                    <!-- 文字内部结构 -->
+<aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步下载Nginx"><span class="toc-text">第一步下载Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步配置config"><span class="toc-text">第二步配置config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows下使用nginx命令启动"><span class="toc-text">Windows下使用nginx命令启动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止"><span class="toc-text">停止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新载入Nginx"><span class="toc-text">重新载入Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新打开日志文件："><span class="toc-text">重新打开日志文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看Nginx版本："><span class="toc-text">查看Nginx版本：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+  <!-- <img src="backtop.jpg" alt=""> -->
+
+</a>
+
+    <div class="times">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+              <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+              <script>
+              var now = new Date();
+              function createtime() {
+                  var grt= new Date("07/3/2018 8:00:00");//此处修改你的建站时间或者网站上线时间
+                  now.setTime(now.getTime()+250);
+                  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+              }
+              setInterval("createtime()",250);
+              </script>
+            </div>
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        很荣幸您成为本站的第
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        位访客
+        &nbsp; | &nbsp;
+        本站总浏览次数:
+
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2018-2019
+                </span> |
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | -->
+                <span>
+                    Made by <a href="//wpa.qq.com/msgrd?uin=2037343920" class="copyright-links" target="_blank" rel="nofollow">Lee</a> with ❤️ and Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+    
+      <script type="text/javascript" src="/snow/jquery.min.js"></script>
+      <script type="text/javascript" src="/snow/all.js"></script>
+      <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    
+
+
+
+</body>
+</html>

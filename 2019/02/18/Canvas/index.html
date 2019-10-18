@@ -1,0 +1,754 @@
+<script src="/assets/jq.min.js"></script>
+<script src="/assets/clipboard.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/jquery.pjax.min.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- <script type="text/javascript" src="assets/clipboard.min.js"></script>
+<script type="text/javascript" src="js/src/custom.js"></script> -->
+
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Lee">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="baidu-site-verification" content="cZKtPkWm2R" />
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://lee.js.org">
+
+    <!-- <script type="text/javascript" src="/snow/jquery.min.js"></script>
+    <script type="text/javascript" src="/snow/all.js"></script> -->
+    <!--SEO-->
+
+<meta name="description" content="Lee hexo lee.js.org"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Canvas | Lee</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Lee" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?64ec872394d355ebe8bfd31c2dae6ff2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+		    i['GoogleAnalyticsObject'] = r;
+		    i[r] = i[r] || function() {
+		        (i[r].q = i[r].q || []).push(arguments)
+		    }, i[r].l = 1 * new Date();
+		    a = s.createElement(o),
+		    m = s.getElementsByTagName(o)[0];
+		    a.async = 1;
+		    a.src = g;
+		    m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'pFW527fHrjfI0si2w4NQ0w3cTw12AvvuohAu1PUfqKA', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+    <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    <!-- <div class="bg"></div>
+    <div class="bg bg--1"></div>
+    <div class="bg bg--2"></div>
+    <div class="bg bg--3"></div>
+    <div class="bg bg--4"></div>
+    <div class="bg bg--5"></div> -->
+
+    <style media="screen">
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgv7d0w8wj31oo11xgrb.jpg); */
+      background-image: url(https://luuman.github.io/background/bg-2.jpg);
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;
+      animation: imageAnimation 36s linear infinite 0s;
+      opacity: 0;
+
+    }
+    .bg--1 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvae03wnj31hc0vhqv6.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-4.jpg);
+        animation-delay: 6s;
+    }
+    .bg--2 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvbuwo0uj31hc0vgu0y.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-8.jpg);
+        animation-delay: 12s;
+    }
+    .bg--3 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvcltrqaj31z4140b2a.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-16.jpg);
+        animation-delay: 18s;
+    }
+    .bg--4 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdbkyxgj31hc0xchdt.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 24s;
+    }
+    .bg--5 {
+        /* background-image: url(https://ws1.sinaimg.cn/large/005Em4nXly1fzgvdwo51oj31hc0u0u0z.jpg); */
+        background-image: url(https://luuman.github.io/background/bg-19.jpg);
+        animation-delay: 30s;
+    }
+    @-webkit-keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+    @keyframes imageAnimation{
+      0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+      }
+      8% {
+          opacity: 1;
+          transform: scale(1.05);
+          animation-timing-function: ease-out;
+      }
+      17% {
+          opacity: 1;
+          transform: scale(1.1) rotate(0);
+      }
+      25% {
+          opacity: 0;
+          transform: scale(1.1) rotate(0);
+      }
+      100% {
+          opacity: 0;
+      }
+    }
+
+    /* body {
+        cursor: url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),url( https://orcl.cc/skins/nijigencopy/images/pointer.cur),auto;
+    } */
+    </style>
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+
+      <div id="aplayer-XgHNeRfs" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="1985290357" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86" data-listfolded="true" data-fixed="true"></div>
+    <!-- 头部 -->
+<header class="main-header"  style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Lee Aaron'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> Just open your eyes , you got everything in the world </h2>
+            
+    	</div>
+    </div>
+</header>
+
+    <!-- 导航栏 -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://lee.js.org">Lee</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Frontend/"><i class="fa "></i>Frontend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Backend/"><i class="fa "></i>Backend</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Essay/"><i class="fa "></i>Essay</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Archives</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/aboutme/"><i class="fa "></i>Aboutme</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/music/"><i class="fa "></i>Music</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://lee981265.coding.me/"><i class="fa "></i>Magic</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="https://leeaaron6.gitee.io/"><i class="fa "></i>Simple</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Canvas">
+            
+	            Canvas
+            
+        </h1>
+        <div class="post-meta">
+  <span class="fa-wrap">
+
+  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+  <a href="/aboutme/">
+      Lee
+  </a>
+</span>
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Frontend/">Frontend</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Canvas/">Canvas</a> <a class="tag-link" href="/tags/Html5/">Html5</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/02/18</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+
+            
+            
+    </div>
+    <!-- 画廊 -->
+
+
+    <div class="post-body post-content">
+        <p>整理了一下canvas笔记。<br><a id="more"></a><br><img src="/img/Canvas.gif" alt=""></p>
+<h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><ul>
+<li>是HTML5提供的一种新标签</li>
+<li>是一个矩形区域的画布，可以用JavaScript在上面绘画，控制其每一个像素，本身不具备绘图功能。</li>
+<li>拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</li>
+</ul>
+<p>使用：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas <span class="attribute">width</span>=<span class="string">"600"</span> <span class="attribute">height</span>=<span class="string">"600"</span>&gt;你的浏览器不支持canvas，请升级浏览器&lt;/canvas&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="canvas用途"><a href="#canvas用途" class="headerlink" title="canvas用途"></a>canvas用途</h2><ul>
+<li>游戏：canvas在基于Web的图像显示方面比Flash更加立体、更加精巧，canvas游戏在流畅度和跨平台方面更牛。</li>
+<li>可视化数据.数据图表话，比如:百度的echart</li>
+<li>banner广告：Flash曾经辉煌的时代，智能手机还未曾出现。现在以及未来的智能机时代，HTML5技术能够在banner广告上发挥巨大作用，用Canvas实现动态的广告效果再合适不过。</li>
+</ul>
+<h3 id="canvas标签语法和属性"><a href="#canvas标签语法和属性" class="headerlink" title="canvas标签语法和属性"></a>canvas标签语法和属性</h3><ol>
+<li>可以设置width和height属性，但是属性值单位必须是px，否则忽略，默认300*150px</li>
+<li>不要用CSS控制它的宽和高,会造成图片拉伸，</li>
+<li>js重新设置canvas标签的宽高属性会让画布擦除所有的内容。</li>
+<li>可以给canvas画布设置背景色</li>
+</ol>
+<h3 id="canvas坐标系"><a href="#canvas坐标系" class="headerlink" title="canvas坐标系"></a>canvas坐标系</h3><p>canvas坐标系，从最左上角0,0开始。x向右增大， y向下增大<br><img src="/img/canvas-x-y.png" alt="canvas坐标系" title="canvas坐标系"></p>
+<h2 id="Canvas-API"><a href="#Canvas-API" class="headerlink" title="Canvas API"></a>Canvas API</h2><h3 id="绘图上下文context"><a href="#绘图上下文context" class="headerlink" title="绘图上下文context"></a>绘图上下文context</h3><p>上下文：工具包，是所有的绘制操作api的入口或者集合</p>
+<ol>
+<li>canvas自身无法绘制任何内容。Canvas的绘图是使用JavaScript操作的。</li>
+<li>context对象就是JavaScript操作Canvas的接口</li>
+<li>使用getContext(‘2d’)来获取2D绘图上下文。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);  <span class="comment">//注意：2d小写， 3d：webgl</span></span><br></pre></td></tr></table></figure>
+<h3 id="绘制图形"><a href="#绘制图形" class="headerlink" title="绘制图形"></a>绘制图形</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>lineWidth     设置线宽</li>
+<li>strokeStyle   设置描边样式（默认黑色）</li>
+<li>fillStyle     设置填充样式（默认黑色）</li>
+</ul>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>moveTo(x,y)   设置绘制路径的起点（移动画笔位置）</li>
+<li>lineTo(x,y)   画线</li>
+<li>closePath()   闭合路径，必须闭合路径才能成功填充</li>
+<li><p>beginPath()   开启一个新状态，基于之前的状态开启新的状态，新的状态会保持之前的设置</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.beginPath();</span><br><span class="line"><span class="comment">//开启新的状态后，当设置新的值时，只会作用于当前状态，不会影响之前的状态</span></span><br><span class="line">ctx.lindeWidth = <span class="number">2</span>;</span><br><span class="line">ctx.strokeStyle = <span class="string">'#ddd'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rect(x,y,width,height) 绘制矩形路径<br>x, y是矩形左上角坐标， width和height都是以像素计（下同）</p>
+<blockquote>
+<p>PS: rect方法只是规划了矩形的路径，并没有填充和描边</p>
+</blockquote>
+</li>
+<li><p>strokeRect(x,y,width,height)  绘制描边矩形</p>
+</li>
+<li>fillRect(x,y,width,height)    绘制填充矩形</li>
+<li>stroke()      描边</li>
+<li>fill()        填充，该方法会自动闭合路径</li>
+<li><p>clearRect(x,y,width,height)   清除矩形区域，</p>
+<blockquote>
+<p>PS:重新设置canvas的宽/高也能达到清空的效果</p>
+</blockquote>
+</li>
+<li><p>arc(x,y,radius,startAngle,endAngle,counterclockwise)   画圆弧/画圆</p>
+<ul>
+<li>x,y：圆心坐标。</li>
+<li>radius：半径大小。</li>
+<li>startAngle:绘制开始的角度（x轴为0度）。</li>
+<li>endAngel:结束的角度，注意是弧度。</li>
+<li>counterclockwise：是否是逆时针。true是逆时针，false：顺时针</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">弧度和角度的转换公式： <span class="built_in">rad</span> = <span class="built_in">deg</span>*Math.<span class="built_in">PI</span>/<span class="number">180</span>;</span><br><span class="line">在Math提供的方法中<span class="built_in">sin</span>、<span class="built_in">cos</span>等都使用的弧度</span><br></pre></td></tr></table></figure>
+<p>**绘图步骤（5步）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、获得画布</span><br><span class="line"><span class="keyword">var</span> canvas  = <span class="built_in">document</span>.getElementById( <span class="string">'cavsElem'</span> );</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、获得canvas上下文</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext( <span class="string">'2d'</span> );</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、绘制路径</span><br><span class="line"><span class="comment">//设置绘制起点（移动画笔位置）</span></span><br><span class="line">ctx.moveTo(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">ctx.lineTo(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">ctx.lineTo(<span class="number">100</span>,<span class="number">200</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、设置样式</span><br><span class="line"><span class="comment">//设置线宽</span></span><br><span class="line">ctx.lineWidth = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置描边样式（默认黑色）</span></span><br><span class="line">ctx.strokeStyle = <span class="string">'red'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置填充样式（默认黑色）</span></span><br><span class="line">ctx.fillStyle = <span class="string">'#f60'</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>、描边/填充</span><br><span class="line">ctx.stroke();</span><br><span class="line">ctx.fill();</span><br><span class="line"></span><br><span class="line">PS：fill()方法会自动闭合路径</span><br></pre></td></tr></table></figure></p>
+<h3 id="绘制字体（了解）"><a href="#绘制字体（了解）" class="headerlink" title="绘制字体（了解）"></a>绘制字体（了解）</h3><h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>font      设置或返回文本内容的当前字体属性，语法与CSS相同</li>
+<li><p>textAlign 设置或返回文本内容的当前对齐方式</p>
+<ul>
+<li>start（默认）: 文本在指定的位置开始。</li>
+<li>end : 文本在指定的位置结束。</li>
+<li>center: 文本的中心被放置在指定的位置。</li>
+<li>left : 文本左对齐。</li>
+<li><p>right : 文本右对齐。</p>
+<p><img src="/img/textAsign.png" alt="textAlign示意图" title="textAlign示意图"></p>
+</li>
+</ul>
+</li>
+<li><p>textBaseline 设置或返回在绘制文本时使用的当前文本基线</p>
+<ul>
+<li>alphabetic ： 默认。文本基线是普通的字母基线。</li>
+<li>top ： 文本基线是 em 方框的顶端。。</li>
+<li>hanging ： 文本基线是悬挂基线。</li>
+<li>middle ： 文本基线是 em 方框的正中。</li>
+<li>ideographic： 文本基线是em基线。</li>
+<li><p>bottom ： 文本基线是 em 方框的底端</p>
+<p><img src="/img/font-baseline.png" alt="textBaseline示意图" title="textBaseline示意图"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>fillText(text,x,y)    填充字体</li>
+<li>strokeText(text,x,y)  描边字体</li>
+<li>measureText(text,x,y) 检测字体宽度,返回包含指定文本宽度的对象<ul>
+<li>text:文本</li>
+<li>x,y：绘制文字起始坐标</li>
+</ul>
+</li>
+</ul>
+<h3 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h3><ul>
+<li>基本绘制图片的方式</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(img,x,y);</span><br><span class="line">参数：</span><br><span class="line">x,y 绘制图片左上角的坐标，</span><br><span class="line">img是绘制图片的dom对象。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在画布上绘制图像，并规定图像的宽度和高度</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(img,x,y,width,height);   </span><br><span class="line">参数：</span><br><span class="line">width 绘制图片的宽度，</span><br><span class="line">height：绘制图片的高度</span><br><span class="line"></span><br><span class="line">如果指定宽高，最好成比例，不然图片会被拉伸</span><br><span class="line">等比公式： height = 原高度*width/原宽度;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>图片裁剪，并把裁剪完成后的那部分图片绘制到画布上</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);</span><br><span class="line">参数：</span><br><span class="line">sx,sy 裁剪的左上角坐标，</span><br><span class="line">swidth：裁剪图片的高度。</span><br><span class="line">sheight:裁剪的高度</span><br></pre></td></tr></table></figure>
+<h3 id="设置阴影（了解）"><a href="#设置阴影（了解）" class="headerlink" title="设置阴影（了解）"></a>设置阴影（了解）</h3><ul>
+<li>shadowColor ： 设置或返回用于阴影的颜色</li>
+<li>shadowBlur ： 设置或返回用于阴影的模糊级别,数值越高，模糊程度越大 （默认为0，不模糊）</li>
+<li>shadowOffsetX： 设置或返回阴影距形状的水平距离</li>
+<li>shadowOffsetY： 设置或返回阴影距形状的垂直距离</li>
+</ul>
+<p>示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillStyle = <span class="string">'#fc0'</span>;</span><br><span class="line">ctx.shadowColor = <span class="string">'#333'</span>;</span><br><span class="line">ctx.shadowBlur = <span class="number">50</span>;</span><br><span class="line">ctx.shadowOffsetX = <span class="number">5</span>;</span><br><span class="line">ctx.shadowOffsetY = <span class="number">5</span>;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建渐变样式（了解）"><a href="#创建渐变样式（了解）" class="headerlink" title="创建渐变样式（了解）"></a>创建渐变样式（了解）</h3><h4 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h4><p>线性渐变是一个对象</p>
+<ul>
+<li><p>语法：ctx.createLinearGradient(x0,y0,x1,y1);<br>参数：x0,y0起始坐标，x1,y1结束坐标</p>
+</li>
+<li><p>addColorStop(stop,color)</p>
+<ul>
+<li>stop：介于 0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置</li>
+<li>color：颜色值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建线性渐变的对象，</span></span><br><span class="line"><span class="keyword">var</span> grd=ctx.createLinearGradient(<span class="number">0</span>,<span class="number">0</span>,<span class="number">170</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加一个渐变颜色，</span></span><br><span class="line"><span class="comment">//参数1：0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置。</span></span><br><span class="line"><span class="comment">//参数2：具体颜色</span></span><br><span class="line">grd.addColorStop(<span class="number">0</span>,<span class="string">"black"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加一个渐变颜色</span></span><br><span class="line">grd.addColorStop(<span class="number">1</span>,<span class="string">"white"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//关键点，把渐变设置到 填充的样式</span></span><br><span class="line">ctx.fillStyle =grd;</span><br></pre></td></tr></table></figure>
+<h4 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h4><ul>
+<li>ctx.createRadialGradient(x0,y0,r0,x1,y1,r1);<ul>
+<li>x0: 渐变的开始圆的 x 坐标</li>
+<li>y0: 渐变的开始圆的 y 坐标</li>
+<li>r0: 开始圆的半径</li>
+<li>x1: 渐变的结束圆的 x 坐标</li>
+<li>y1: 渐变的结束圆的 y 坐标</li>
+<li>r1: 结束圆的半径</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rlg = ctx.createRadialGradient(<span class="number">300</span>,<span class="number">300</span>,<span class="number">10</span>,<span class="number">300</span>,<span class="number">300</span>,<span class="number">200</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加一个渐变颜色</span></span><br><span class="line">rlg.addColorStop(<span class="number">0</span>, <span class="string">'#ccc'</span>);</span><br><span class="line">rlg.addColorStop(<span class="number">.4</span>, <span class="string">'#efefef'</span>);</span><br><span class="line">rlg.addColorStop(<span class="number">1</span>, <span class="string">'#fff'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置 填充样式为延续渐变的样式</span></span><br><span class="line">ctx.fillStyle = rlg;</span><br><span class="line">ctx.fillRect(<span class="number">100</span>, <span class="number">100</span>, <span class="number">500</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="绘制背景图（了解）"><a href="#绘制背景图（了解）" class="headerlink" title="绘制背景图（了解）"></a>绘制背景图（了解）</h3><p>ctx.createPattern(img,repeat) 方法在指定的方向内重复指定的元素了解</p>
+<ul>
+<li>参数一：设置平铺背景的图片的DOM节点，</li>
+<li>参数二：背景平铺的方式。<ul>
+<li>image ： 规定要使用的图片、画布或视频元素。</li>
+<li>repeat ： 默认。该模式在水平和垂直方向重复。</li>
+<li>repeat-x ： 该模式只在水平方向重复。</li>
+<li>repeat-y ： 该模式只在垂直方向重复。</li>
+<li>no-repeat： 该模式只显示一次（不重复）。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="keyword">var</span> img=<span class="built_in">document</span>.getElementById(<span class="string">"lamp"</span>);</span><br><span class="line"><span class="keyword">var</span> pat=ctx.createPattern(img,<span class="string">"repeat"</span>);</span><br><span class="line">ctx.rect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">150</span>,<span class="number">100</span>);</span><br><span class="line">ctx.fillStyle=pat;<span class="comment">//  把背景图设置给填充的样式</span></span><br><span class="line">ctx.fill();</span><br></pre></td></tr></table></figure>
+<h3 id="画布变换"><a href="#画布变换" class="headerlink" title="画布变换"></a>画布变换</h3><blockquote>
+<p>注意：画布变换仅仅是改变画布状态，不会影响之前画布上的内容</p>
+</blockquote>
+<ul>
+<li><p>缩放<br>scale(scaleWidth,scaleHeight) 方法缩放当前绘图，参数为0~1的值</p>
+</li>
+<li><p>位移画布<br>translate(x,y) 方法重新映射画布上的 (0,0) 位置</p>
+</li>
+<li><p>旋转<br>rotate(angle) 方法旋转当前的绘图，注意参数是弧度</p>
+</li>
+</ul>
+<h3 id="绘制环境保存和还原"><a href="#绘制环境保存和还原" class="headerlink" title="绘制环境保存和还原"></a>绘制环境保存和还原</h3><ul>
+<li><p>ctx.save() 保存当前环境的状态<br>可以把当前绘制环境context保存到缓存中。</p>
+</li>
+<li><p>ctx.restore() 返回之前保存过的路径状态和属性<br>获取最近通过save()方法缓存的context</p>
+</li>
+</ul>
+<h3 id="保存base64编码图片"><a href="#保存base64编码图片" class="headerlink" title="保存base64编码图片"></a>保存base64编码图片</h3><ul>
+<li>toDataURL(type, encoderOptions);<ul>
+<li>type，设置输出的类型，比如 image/png image/jpeg等</li>
+<li>encoderOptions：0-1之间的数字，用于标识输出图片的品质</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>PS:必须在服务器环境下使用</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> dataURL = canvas.toDataURL();</span><br><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.querySelector(<span class="string">"img"</span>);</span><br><span class="line">img.src = canvas.toDataURL(<span class="string">"image/png"</span>);<span class="comment">//将画布的内容赋值给图片的src属性</span></span><br></pre></td></tr></table></figure>
+<h3 id="贝塞尔曲线（了解）"><a href="#贝塞尔曲线（了解）" class="headerlink" title="贝塞尔曲线（了解）"></a>贝塞尔曲线（了解）</h3><h4 id="二次方曲线"><a href="#二次方曲线" class="headerlink" title="二次方曲线"></a>二次方曲线</h4><p>quadraticCurveTo(cpx,cpy,x,y)</p>
+<ul>
+<li>cpx： 贝塞尔控制点的 x 坐标</li>
+<li>cpy： 贝塞尔控制点的 y 坐标</li>
+<li>x ： 结束点的 x 坐标</li>
+<li>y ： 结束点的 y 坐标<br><img src="/img/quadratic.png" alt="二次方曲线示意图" title="二次方曲线示意图"></li>
+</ul>
+<h4 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h4><p>bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)</p>
+<blockquote>
+<p>提示：三次贝塞尔曲线需要三个点。前两个点是用于三次贝塞尔计算中的控制点，第三个点是曲线的结束点</p>
+</blockquote>
+<ul>
+<li>cp1x： 第一个贝塞尔控制点的 x 坐标</li>
+<li>cp1y： 第一个贝塞尔控制点的 y 坐标</li>
+<li>cp2x： 第二个贝塞尔控制点的 x 坐标</li>
+<li>cp2y： 第二个贝塞尔控制点的 y 坐标</li>
+<li>x: 结束点的 x 坐标</li>
+<li>y: 结束点的 y 坐标<br><img src="/img/bezier.png" alt="贝塞尔曲线示意图" title="贝塞尔曲线示意图"></li>
+</ul>
+<h2 id="Canvas应用"><a href="#Canvas应用" class="headerlink" title="Canvas应用"></a>Canvas应用</h2><ul>
+<li>Echarts</li>
+<li>Highcharts</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://wpa.qq.com/msgrd?uin=2037343920" target="_blank">Lee</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/03/21/webpack入门/" class="pre-post btn btn-default" title='webpack入门'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">webpack入门</span>
+        </a>
+    
+    
+        <a href="/2019/02/11/如何提升自我素养/" class="next-post btn btn-default" title='如何提升自我素养'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">如何提升自我素养</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'gd9N3iwmJMjWNJUuA71WlRj7-gzGzoHsz',
+            appKey: 'PlSGU0BVUIgyuS6bQ15rXq3i',
+            placeholder: 'Just go go(text or md)',
+            notify: true,
+            verify: false,
+            avatar: 'wavatar',
+            meta: 'nick,mail,link'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: ''.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+                </main>
+                
+                    <!-- 文字内部结构 -->
+<aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#canvas"><span class="toc-text">canvas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#canvas用途"><span class="toc-text">canvas用途</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas标签语法和属性"><span class="toc-text">canvas标签语法和属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas坐标系"><span class="toc-text">canvas坐标系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-API"><span class="toc-text">Canvas API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#绘图上下文context"><span class="toc-text">绘图上下文context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制图形"><span class="toc-text">绘制图形</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制字体（了解）"><span class="toc-text">绘制字体（了解）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性-1"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法-1"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制图片"><span class="toc-text">绘制图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置阴影（了解）"><span class="toc-text">设置阴影（了解）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建渐变样式（了解）"><span class="toc-text">创建渐变样式（了解）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线性渐变"><span class="toc-text">线性渐变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#径向渐变"><span class="toc-text">径向渐变</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制背景图（了解）"><span class="toc-text">绘制背景图（了解）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#画布变换"><span class="toc-text">画布变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制环境保存和还原"><span class="toc-text">绘制环境保存和还原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存base64编码图片"><span class="toc-text">保存base64编码图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贝塞尔曲线（了解）"><span class="toc-text">贝塞尔曲线（了解）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#二次方曲线"><span class="toc-text">二次方曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贝塞尔曲线"><span class="toc-text">贝塞尔曲线</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas应用"><span class="toc-text">Canvas应用</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+
+
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+  <!-- <img src="backtop.jpg" alt=""> -->
+
+</a>
+
+    <div class="times">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12">
+              <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+              <script>
+              var now = new Date();
+              function createtime() {
+                  var grt= new Date("07/3/2018 8:00:00");//此处修改你的建站时间或者网站上线时间
+                  now.setTime(now.getTime()+250);
+                  days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+                  hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+                  if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+                  mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+                  seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                  snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+                  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+                  document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+              }
+              setInterval("createtime()",250);
+              </script>
+            </div>
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        很荣幸您成为本站的第
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        位访客
+        &nbsp; | &nbsp;
+        本站总浏览次数:
+
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2018-2019
+                </span> |
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | -->
+                <span>
+                    Made by <a href="//wpa.qq.com/msgrd?uin=2037343920" class="copyright-links" target="_blank" rel="nofollow">Lee</a> with ❤️ and Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+    
+      <script type="text/javascript" src="/snow/jquery.min.js"></script>
+      <script type="text/javascript" src="/snow/all.js"></script>
+      <div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;"></div>
+    
+
+
+
+</body>
+</html>
